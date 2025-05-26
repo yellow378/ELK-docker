@@ -1,0 +1,31 @@
+services:
+  elasticsearch:
+    image: elasticsearch:8.12.2
+    container_name: elasticsearch
+    environment:
+      - cluster.name=elasticsearch
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - xpack.security.enabled=true
+      - ELASTIC_PASSWORD=186317
+      #- xpack.security.http.ssl.enabled=false
+    volumes:
+      - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  kibana:
+    image: kibana:8.12.2
+    container_name: kibana
+    ports:
+      - 5601:5601
+    links:
+      - elasticsearch:es
+    depends_on:
+      - elasticsearch
+    environment:
+      - elasticsearch.hosts=http://es:9200
+      #- xpack.security.enabled=false
+      #- xpack.security.http.ssl.enabled=false
