@@ -4,9 +4,9 @@
 
 ## TODO
 
-- [] 启动
-- [] 用户
-- [] 集群
+- [ ] 启动
+- [ ] 用户
+- [ ] 集群
 
 ## ELK: ElasticSearch + LogStash + Kibana
 
