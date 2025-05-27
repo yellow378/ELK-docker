@@ -29,3 +29,13 @@ services:
       - elasticsearch.hosts=http://es:9200
     volumes:
       - ./kibana/config:/usr/share/kibana/config
+
+  logstash:
+    image: logstash:8.12.2
+    container_name: logstash
+    ports:
+      - 5044:5044
+    volumes:
+      - ./logstash/config:/usr/share/logstash/config
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+
